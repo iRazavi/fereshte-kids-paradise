@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,13 +7,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Home, Calendar, Phone, Info, GalleryHorizontal } from 'lucide-react';
+import { Home, Calendar, Phone, Info, GalleryHorizontal, MapPin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import jalaali from 'jalaali-js';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [whatsappCoordination, setWhatsappCoordination] = useState(false);
   const { toast } = useToast();
+
+  // Persian month names
+  const persianMonths = [
+    'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
+    'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
+  ];
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -36,6 +42,14 @@ const Index = () => {
       title: "پیام شما ارسال شد!",
       description: "از نظر شما متشکریم. به زودی پاسخ خواهیم داد.",
     });
+  };
+
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/989917037267', '_blank');
+  };
+
+  const handleMapClick = () => {
+    window.open('https://maps.google.com/?q=گراش+خیابان+بازار+جنب+آموزشگاه+رانندگی+ساختمان+فرشته', '_blank');
   };
 
   const navItems = [
@@ -180,6 +194,15 @@ const Index = () => {
               </div>
             </div>
             
+            {/* Fancy Header Elements */}
+            <div className="hidden lg:flex items-center space-x-2 rtl:space-x-reverse animate-float">
+              <div className="text-2xl">🌟</div>
+              <div className="text-2xl">🎪</div>
+              <div className="text-2xl">🎠</div>
+              <div className="text-2xl">🎡</div>
+              <div className="text-2xl">🎢</div>
+            </div>
+            
             <nav className="hidden md:flex space-x-6 rtl:space-x-reverse">
               {navItems.map((item) => (
                 <button
@@ -195,12 +218,25 @@ const Index = () => {
               ))}
             </nav>
             
-            <Button 
-              onClick={() => scrollToSection('reservation')}
-              className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful animate-sparkle"
-            >
-              رزرو کنید
-            </Button>
+            <div className="flex items-center space-x-3 rtl:space-x-reverse">
+              {/* WhatsApp Icon */}
+              <Button 
+                onClick={handleWhatsAppClick}
+                size="sm"
+                className="bg-green-500 hover:bg-green-600 text-white rounded-full w-10 h-10 p-0"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255.018-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.106"/>
+                </svg>
+              </Button>
+              
+              <Button 
+                onClick={() => scrollToSection('reservation')}
+                className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful animate-sparkle"
+              >
+                رزرو کنید
+              </Button>
+            </div>
           </div>
         </div>
       </header>
@@ -513,13 +549,57 @@ const Index = () => {
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">تاریخ مورد نظر</label>
-                    <Input type="date" className="border-purple-200 focus:border-purple-500" />
+                    <label className="block text-sm font-medium text-gray-700 mb-2">تاریخ مورد نظر (شمسی)</label>
+                    <div className="grid grid-cols-3 gap-2">
+                      <Select>
+                        <SelectTrigger className="border-purple-200 focus:border-purple-500">
+                          <SelectValue placeholder="روز" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {Array.from({length: 31}, (_, i) => (
+                            <SelectItem key={i+1} value={String(i+1)}>{i+1}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Select>
+                        <SelectTrigger className="border-purple-200 focus:border-purple-500">
+                          <SelectValue placeholder="ماه" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {persianMonths.map((month, index) => (
+                            <SelectItem key={index+1} value={String(index+1)}>{month}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Select>
+                        <SelectTrigger className="border-purple-200 focus:border-purple-500">
+                          <SelectValue placeholder="سال" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1403">1403</SelectItem>
+                          <SelectItem value="1404">1404</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">تعداد مهمان</label>
-                    <Input placeholder="مثال: 15 نفر" className="border-purple-200 focus:border-purple-500" />
+                    <label className="block text-sm font-medium text-gray-700 mb-2">زمان برگزاری</label>
+                    <Select>
+                      <SelectTrigger className="border-purple-200 focus:border-purple-500">
+                        <SelectValue placeholder="انتخاب زمان" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="morning">صبح (9:00 - 12:00)</SelectItem>
+                        <SelectItem value="afternoon">عصر (15:00 - 18:00)</SelectItem>
+                        <SelectItem value="evening">شب (18:00 - 21:00)</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">تعداد مهمان</label>
+                  <Input placeholder="مثال: 15 نفر" className="border-purple-200 focus:border-purple-500" />
                 </div>
 
                 <div>
@@ -545,18 +625,36 @@ const Index = () => {
                   />
                 </div>
 
-                <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                  <Checkbox 
-                    id="whatsapp" 
-                    checked={whatsappCoordination}
-                    onCheckedChange={(value) => setWhatsappCoordination(!!value)}
-                  />
-                  <label
-                    htmlFor="whatsapp"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    مایل هستید هماهنگی از طریق واتساپ انجام شود؟
-                  </label>
+                <div className="space-y-3">
+                  <p className="text-sm font-medium text-gray-700">مایل هستید هماهنگی از طریق واتساپ انجام شود؟</p>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                      <Checkbox 
+                        id="whatsapp-yes" 
+                        checked={whatsappCoordination}
+                        onCheckedChange={(value) => setWhatsappCoordination(!!value)}
+                      />
+                      <label
+                        htmlFor="whatsapp-yes"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        بله، لطفاً از طریق واتساپ با من هماهنگ کنید
+                      </label>
+                    </div>
+                    <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                      <Checkbox 
+                        id="whatsapp-no" 
+                        checked={!whatsappCoordination}
+                        onCheckedChange={(value) => setWhatsappCoordination(!value)}
+                      />
+                      <label
+                        htmlFor="whatsapp-no"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        خیر، فقط تماس تلفنی کافی است
+                      </label>
+                    </div>
+                  </div>
                 </div>
                 
                 <Button 
@@ -643,7 +741,12 @@ const Index = () => {
                   <div>
                     <h4 className="font-semibold text-gray-700 mb-2">آدرس:</h4>
                     <p className="text-gray-600">گراش - خیابان بازار - جنب آموزشگاه رانندگی - ساختمان فرشته</p>
-                    <Button variant="outline" className="mt-2 text-blue-600 border-blue-300 hover:bg-blue-50">
+                    <Button 
+                      variant="outline" 
+                      className="mt-2 text-blue-600 border-blue-300 hover:bg-blue-50"
+                      onClick={handleMapClick}
+                    >
+                      <MapPin className="w-4 h-4 ml-2" />
                       مشاهده در نقشه
                     </Button>
                   </div>
