@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Home, Calendar, Phone, Info, GalleryHorizontal, MapPin } from 'lucide-react';
+import { Home, Calendar, Phone, Info, GalleryHorizontal, MapPin, Instagram } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import jalaali from 'jalaali-js';
 
@@ -50,6 +50,10 @@ const Index = () => {
 
   const handleMapClick = () => {
     window.open('https://maps.google.com/?q=گراش+خیابان+بازار+جنب+آموزشگاه+رانندگی+ساختمان+فرشته', '_blank');
+  };
+
+  const handleInstagramClick = () => {
+    window.open('https://www.instagram.com/share_bazi_fereshte/', '_blank');
   };
 
   const navItems = [
@@ -219,6 +223,15 @@ const Index = () => {
             </nav>
             
             <div className="flex items-center space-x-3 rtl:space-x-reverse">
+              {/* Instagram Icon */}
+              <Button 
+                onClick={handleInstagramClick}
+                size="sm"
+                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white rounded-full w-10 h-10 p-0"
+              >
+                <Instagram size={20} />
+              </Button>
+              
               {/* WhatsApp Icon */}
               <Button 
                 onClick={handleWhatsAppClick}
@@ -245,7 +258,7 @@ const Index = () => {
       <section id="home" className="relative overflow-hidden py-20 sparkle-bg">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <div className="text-8xl mb-6 animate-float">🧚‍♀️✨🎪</div>
+            <div className="text-8xl mb-6 animate-bounce-gentle">🧚‍♀️✨🎪</div>
             <h1 className="text-5xl md:text-7xl font-playful font-bold rainbow-text mb-6 animate-fade-in">
               شهربازی فرشته
             </h1>
@@ -399,7 +412,7 @@ const Index = () => {
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-center gap-2">
                       <span className="text-green-500">✓</span>
-                      تزئینات مخصوص تولد
+                      تزیینات مخصوص تولد
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-green-500">✓</span>
@@ -516,155 +529,231 @@ const Index = () => {
             <p className="text-xl text-gray-600">همین امروز به ما سر بزنید!</p>
           </div>
           
-          <div className="max-w-2xl mx-auto">
-            <Card className="bg-white shadow-2xl border-0">
-              <CardHeader className="text-center bg-gradient-to-r from-pink-400 to-purple-500 text-white rounded-t-lg">
-                <CardTitle className="text-2xl font-playful">فرم رزرو</CardTitle>
-                <CardDescription className="text-pink-100">
-                  اطلاعات زیر را تکمیل کنید تا با شما تماس بگیریم
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-8 space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">نام والدین</label>
-                    <Input placeholder="نام و نام خانوادگی" className="border-purple-200 focus:border-purple-500" />
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Reservation Form */}
+            <div className="max-w-2xl">
+              <Card className="bg-white shadow-2xl border-0">
+                <CardHeader className="text-center bg-gradient-to-r from-pink-400 to-purple-500 text-white rounded-t-lg">
+                  <CardTitle className="text-2xl font-playful">فرم رزرو</CardTitle>
+                  <CardDescription className="text-pink-100">
+                    اطلاعات زیر را تکمیل کنید تا با شما تماس بگیریم
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="p-8 space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">نام والدین</label>
+                      <Input placeholder="نام و نام خانوادگی" className="border-purple-200 focus:border-purple-500" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">نام کودک</label>
+                      <Input placeholder="نام فرشته کوچولو" className="border-purple-200 focus:border-purple-500" />
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">نام کودک</label>
-                    <Input placeholder="نام فرشته کوچولو" className="border-purple-200 focus:border-purple-500" />
+                  
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">شماره تماس</label>
+                      <Input placeholder="09xxxxxxxxx" className="border-purple-200 focus:border-purple-500" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">سن کودک</label>
+                      <Input placeholder="مثال: 5 سال" className="border-purple-200 focus:border-purple-500" />
+                    </div>
                   </div>
-                </div>
-                
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">شماره تماس</label>
-                    <Input placeholder="09xxxxxxxxx" className="border-purple-200 focus:border-purple-500" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">سن کودک</label>
-                    <Input placeholder="مثال: 5 سال" className="border-purple-200 focus:border-purple-500" />
-                  </div>
-                </div>
-                
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">تاریخ مورد نظر (شمسی)</label>
-                    <div className="grid grid-cols-3 gap-2">
+                  
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">تاریخ مورد نظر (شمسی)</label>
+                      <div className="grid grid-cols-3 gap-2">
+                        <Select>
+                          <SelectTrigger className="border-purple-200 focus:border-purple-500">
+                            <SelectValue placeholder="روز" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {Array.from({length: 31}, (_, i) => (
+                              <SelectItem key={i+1} value={String(i+1)}>{i+1}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <Select>
+                          <SelectTrigger className="border-purple-200 focus:border-purple-500">
+                            <SelectValue placeholder="ماه" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {persianMonths.map((month, index) => (
+                              <SelectItem key={index+1} value={String(index+1)}>{month}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <Select>
+                          <SelectTrigger className="border-purple-200 focus:border-purple-500">
+                            <SelectValue placeholder="سال" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="1403">1403</SelectItem>
+                            <SelectItem value="1404">1404</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">زمان برگزاری</label>
                       <Select>
                         <SelectTrigger className="border-purple-200 focus:border-purple-500">
-                          <SelectValue placeholder="روز" />
+                          <SelectValue placeholder="انتخاب زمان" />
                         </SelectTrigger>
                         <SelectContent>
-                          {Array.from({length: 31}, (_, i) => (
-                            <SelectItem key={i+1} value={String(i+1)}>{i+1}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <Select>
-                        <SelectTrigger className="border-purple-200 focus:border-purple-500">
-                          <SelectValue placeholder="ماه" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {persianMonths.map((month, index) => (
-                            <SelectItem key={index+1} value={String(index+1)}>{month}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <Select>
-                        <SelectTrigger className="border-purple-200 focus:border-purple-500">
-                          <SelectValue placeholder="سال" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="1403">1403</SelectItem>
-                          <SelectItem value="1404">1404</SelectItem>
+                          <SelectItem value="morning">صبح (9:00 - 12:00)</SelectItem>
+                          <SelectItem value="afternoon">عصر (15:00 - 18:00)</SelectItem>
+                          <SelectItem value="evening">شب (18:00 - 21:00)</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                   </div>
+
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">زمان برگزاری</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">تعداد مهمان</label>
+                    <Input placeholder="مثال: 15 نفر" className="border-purple-200 focus:border-purple-500" />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">انتخاب پکیج</label>
                     <Select>
                       <SelectTrigger className="border-purple-200 focus:border-purple-500">
-                        <SelectValue placeholder="انتخاب زمان" />
+                        <SelectValue placeholder="پکیج مورد نظر را انتخاب کنید" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="morning">صبح (9:00 - 12:00)</SelectItem>
-                        <SelectItem value="afternoon">عصر (15:00 - 18:00)</SelectItem>
-                        <SelectItem value="evening">شب (18:00 - 21:00)</SelectItem>
+                        <SelectItem value="simple">🎈 پکیج ساده - ۸۰۰٬۰۰۰ تومان</SelectItem>
+                        <SelectItem value="gold">✨ پکیج طلایی - ۱٬۰۰۰٬۰۰۰ تومان</SelectItem>
+                        <SelectItem value="vip">👑 پکیج VIP - ۱٬۲۰۰٬۰۰۰ تومان</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
-                </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">توضیحات اضافی</label>
+                    <Textarea 
+                      placeholder="تم مورد علاقه، درخواست خاص و..." 
+                      className="border-purple-200 focus:border-purple-500" 
+                      rows={3}
+                    />
+                  </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">تعداد مهمان</label>
-                  <Input placeholder="مثال: 15 نفر" className="border-purple-200 focus:border-purple-500" />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">انتخاب پکیج</label>
-                  <Select>
-                    <SelectTrigger className="border-purple-200 focus:border-purple-500">
-                      <SelectValue placeholder="پکیج مورد نظر را انتخاب کنید" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="simple">🎈 پکیج ساده - ۸۰۰٬۰۰۰ تومان</SelectItem>
-                      <SelectItem value="gold">✨ پکیج طلایی - ۱٬۰۰۰٬۰۰۰ تومان</SelectItem>
-                      <SelectItem value="vip">👑 پکیج VIP - ۱٬۲۰۰٬۰۰۰ تومان</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">توضیحات اضافی</label>
-                  <Textarea 
-                    placeholder="تم مورد علاقه، درخواست خاص و..." 
-                    className="border-purple-200 focus:border-purple-500" 
-                    rows={3}
-                  />
-                </div>
-
-                <div className="space-y-3">
-                  <p className="text-sm font-medium text-gray-700">مایل هستید هماهنگی از طریق واتساپ انجام شود؟</p>
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                      <Checkbox 
-                        id="whatsapp-yes" 
-                        checked={whatsappCoordination}
-                        onCheckedChange={(value) => setWhatsappCoordination(!!value)}
-                      />
-                      <label
-                        htmlFor="whatsapp-yes"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        بله، لطفاً از طریق واتساپ با من هماهنگ کنید
-                      </label>
-                    </div>
-                    <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                      <Checkbox 
-                        id="whatsapp-no" 
-                        checked={!whatsappCoordination}
-                        onCheckedChange={(value) => setWhatsappCoordination(!value)}
-                      />
-                      <label
-                        htmlFor="whatsapp-no"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        خیر، فقط تماس تلفنی کافی است
-                      </label>
+                  <div className="space-y-3">
+                    <p className="text-sm font-medium text-gray-700">مایل هستید هماهنگی از طریق واتساپ انجام شود؟</p>
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                        <Checkbox 
+                          id="whatsapp-yes" 
+                          checked={whatsappCoordination}
+                          onCheckedChange={(value) => setWhatsappCoordination(!!value)}
+                        />
+                        <label
+                          htmlFor="whatsapp-yes"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          بله، لطفاً از طریق واتساپ با من هماهنگ کنید
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                        <Checkbox 
+                          id="whatsapp-no" 
+                          checked={!whatsappCoordination}
+                          onCheckedChange={(value) => setWhatsappCoordination(!value)}
+                        />
+                        <label
+                          htmlFor="whatsapp-no"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          خیر، فقط تماس تلفنی کافی است
+                        </label>
+                      </div>
                     </div>
                   </div>
-                </div>
-                
-                <Button 
-                  onClick={handleReservation}
-                  className="w-full bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful text-lg py-3"
-                >
-                  ثبت درخواست رزرو 🎉
-                </Button>
-              </CardContent>
-            </Card>
+                  
+                  <Button 
+                    onClick={handleReservation}
+                    className="w-full bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful text-lg py-3"
+                  >
+                    ثبت درخواست رزرو 🎉
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Rules Section */}
+            <div className="space-y-6">
+              <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-0 shadow-lg">
+                <CardHeader>
+                  <CardTitle className="font-playful text-purple-700 flex items-center gap-2">
+                    <span className="text-2xl">📋</span>
+                    قوانین مجموعه پارک کودک فرشته
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-sm">
+                  <div>
+                    <h4 className="font-semibold text-gray-700 mb-2">1. قوانین رزرو جشن تولد</h4>
+                    <ul className="space-y-2 text-gray-600 text-xs">
+                      <li>• جهت نهایی شدن رزرو، ممکن است نیاز به پرداخت مبلغی به عنوان پیش‌پرداخت باشد</li>
+                      <li>• در صورت عدم پاسخگویی مشتری طی ۲۴ ساعت پس از ثبت فرم، رزرو اولیه لغو خواهد شد</li>
+                    </ul>
+                  </div>
+                  
+                  <Separator className="bg-purple-200" />
+                  
+                  <div>
+                    <h4 className="font-semibold text-gray-700 mb-2">2. کنسلی و تغییر زمان</h4>
+                    <ul className="space-y-2 text-gray-600 text-xs">
+                      <li>• لغو یا تغییر تاریخ: حداقل ۴۸ ساعت قبل از زمان برنامه‌ریزی‌شده</li>
+                      <li>• لغو در کمتر از ۴۸ ساعت: عدم بازگشت پیش‌پرداخت یا دریافت جریمه</li>
+                    </ul>
+                  </div>
+                  
+                  <Separator className="bg-purple-200" />
+                  
+                  <div>
+                    <h4 className="font-semibold text-gray-700 mb-2">3. ظرفیت و هزینه مهمانان</h4>
+                    <ul className="space-y-2 text-gray-600 text-xs">
+                      <li>• تمامی پکیج‌ها شامل حداکثر ۸ مهمان کودک هستند</li>
+                      <li>• هزینه اضافی مهمانان بر اساس نوع پکیج محاسبه می‌شود</li>
+                      <li>• تعداد نهایی مهمانان باید ۲۴ ساعت قبل اعلام گردد</li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-0 shadow-lg">
+                <CardHeader>
+                  <CardTitle className="font-playful text-green-700 flex items-center gap-2">
+                    <span className="text-2xl">🛡️</span>
+                    قوانین ایمنی و مسئولیت‌پذیری
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-sm">
+                  <div>
+                    <h4 className="font-semibold text-gray-700 mb-2">4. ایمنی و نظارت</h4>
+                    <ul className="space-y-2 text-gray-600 text-xs">
+                      <li>• مسئولیت نگهداری وسایل شخصی بر عهده والدین است</li>
+                      <li>• حضور یکی از والدین یا سرپرست قانونی کودک الزامی است</li>
+                      <li>• رعایت دستورالعمل‌های ایمنی و قوانین مجموعه الزامی است</li>
+                      <li>• استفاده از امکانات تحت نظارت مربیان مجاز است</li>
+                    </ul>
+                  </div>
+                  
+                  <Separator className="bg-green-200" />
+                  
+                  <div>
+                    <h4 className="font-semibold text-gray-700 mb-2">5. خدمات و پکیج‌ها</h4>
+                    <ul className="space-y-2 text-gray-600 text-xs">
+                      <li>• محتویات هر پکیج به‌صورت شفاف درج شده است</li>
+                      <li>• خدمات خارج از پکیج‌ها نیاز به هماهنگی قبلی دارد</li>
+                      <li>• درخواست‌های خاص (تم، عروسک، عکاس، کیک سفارشی) در زمان ثبت فرم اعلام شود</li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
