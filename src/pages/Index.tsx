@@ -7,14 +7,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Home, Calendar, Phone, Info, GalleryHorizontal, MapPin, Instagram } from 'lucide-react';
+import { Home, Calendar, Phone, Info, GalleryHorizontal, MapPin, Instagram, HelpCircle, Coffee } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 import jalaali from 'jalaali-js';
+import FAQ from '@/components/FAQ';
+import BackgroundMusic from '@/components/BackgroundMusic';
+import PriceCalculator from '@/components/PriceCalculator';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [whatsappCoordination, setWhatsappCoordination] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   // Persian month names
   const persianMonths = [
@@ -56,12 +61,17 @@ const Index = () => {
     window.open('https://www.instagram.com/share_bazi_fereshte/', '_blank');
   };
 
+  const handleCafeMenuClick = () => {
+    navigate('/cafe-menu');
+  };
+
   const navItems = [
     { id: 'home', label: 'خانه', icon: Home },
     { id: 'services', label: 'خدمات', icon: Info },
     { id: 'gallery', label: 'گالری', icon: GalleryHorizontal },
     { id: 'birthday', label: 'جشن تولدها', icon: Calendar },
     { id: 'reservation', label: 'رزرو', icon: Calendar },
+    { id: 'faq', label: 'سؤالات متداول', icon: HelpCircle },
     { id: 'contact', label: 'تماس با ما', icon: Phone },
   ];
 
@@ -186,6 +196,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
+      <BackgroundMusic />
+      
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100 shadow-lg">
         <div className="container mx-auto px-4 py-4">
@@ -223,13 +235,15 @@ const Index = () => {
             </nav>
             
             <div className="flex items-center space-x-3 rtl:space-x-reverse">
-              {/* Instagram Icon */}
+              {/* Cafe Menu Button */}
               <Button 
-                onClick={handleInstagramClick}
+                onClick={handleCafeMenuClick}
                 size="sm"
-                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white rounded-full w-10 h-10 p-0"
+                className="bg-gradient-to-r from-orange-400 to-yellow-500 hover:from-orange-500 hover:to-yellow-600 text-white rounded-full flex items-center gap-1 px-3 py-2"
               >
-                <Instagram size={20} />
+                <Coffee size={16} />
+                <span className="text-xs">منو کافه</span>
+                <Badge className="bg-white/20 text-xs px-1 py-0">به زودی</Badge>
               </Button>
               
               {/* WhatsApp Icon */}
@@ -449,6 +463,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <FAQ />
+
       {/* Testimonials */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="container mx-auto px-4">
@@ -529,9 +546,9 @@ const Index = () => {
             <p className="text-xl text-gray-600">همین امروز به ما سر بزنید!</p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-3 gap-8">
             {/* Reservation Form */}
-            <div className="max-w-2xl">
+            <div className="lg:col-span-2">
               <Card className="bg-white shadow-2xl border-0">
                 <CardHeader className="text-center bg-gradient-to-r from-pink-400 to-purple-500 text-white rounded-t-lg">
                   <CardTitle className="text-2xl font-playful">فرم رزرو</CardTitle>
@@ -682,77 +699,100 @@ const Index = () => {
               </Card>
             </div>
 
-            {/* Rules Section */}
+            {/* Price Calculator */}
             <div className="space-y-6">
-              <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-0 shadow-lg">
-                <CardHeader>
-                  <CardTitle className="font-playful text-purple-700 flex items-center gap-2">
-                    <span className="text-2xl">📋</span>
-                    قوانین مجموعه پارک کودک فرشته
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4 text-sm">
-                  <div>
-                    <h4 className="font-semibold text-gray-700 mb-2">1. قوانین رزرو جشن تولد</h4>
-                    <ul className="space-y-2 text-gray-600 text-xs">
-                      <li>• جهت نهایی شدن رزرو، ممکن است نیاز به پرداخت مبلغی به عنوان پیش‌پرداخت باشد</li>
-                      <li>• در صورت عدم پاسخگویی مشتری طی ۲۴ ساعت پس از ثبت فرم، رزرو اولیه لغو خواهد شد</li>
-                    </ul>
+              <PriceCalculator />
+              
+              <Separator className="bg-purple-200" />
+              
+              <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div className="space-y-6">
+                  <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-0 shadow-lg">
+                    <CardHeader>
+                      <CardTitle className="font-playful text-purple-700 flex items-center gap-2">
+                        <span className="text-2xl">📋</span>
+                        قوانین مجموعه پارک کودک فرشته
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4 text-sm">
+                      <div>
+                        <h4 className="font-semibold text-gray-700 mb-2">1. قوانین رزرو جشن تولد</h4>
+                        <ul className="space-y-2 text-gray-600 text-xs">
+                          <li>• جهت نهایی شدن رزرو، ممکن است نیاز به پرداخت مبلغی به عنوان پیش‌پرداخت باشد</li>
+                          <li>• در صورت عدم پاسخگویی مشتری طی ۲۴ ساعت پس از ثبت فرم، رزرو اولیه لغو خواهد شد</li>
+                        </ul>
+                      </div>
+                      
+                      <Separator className="bg-purple-200" />
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-700 mb-2">2. کنسلی و تغییر زمان</h4>
+                        <ul className="space-y-2 text-gray-600 text-xs">
+                          <li>• لغو یا تغییر تاریخ: حداقل ۴۸ ساعت قبل از زمان برنامه‌ریزی‌شده</li>
+                          <li>• لغو در کمتر از ۴۸ ساعت: عدم بازگشت پیش‌پرداخت یا دریافت جریمه</li>
+                        </ul>
+                      </div>
+                      
+                      <Separator className="bg-purple-200" />
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-700 mb-2">3. ظرفیت و هزینه مهمانان</h4>
+                        <ul className="space-y-2 text-gray-600 text-xs">
+                          <li>• تمامی پکیج‌ها شامل حداکثر ۸ مهمان کودک هستند</li>
+                          <li>• هزینه اضافی مهمانان بر اساس نوع پکیج محاسبه می‌شود</li>
+                          <li>• تعداد نهایی مهمانان باید ۲۴ ساعت قبل اعلام گردد</li>
+                        </ul>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-0 shadow-lg">
+                    <CardHeader>
+                      <CardTitle className="font-playful text-green-700 flex items-center gap-2">
+                        <span className="text-2xl">🛡️</span>
+                        قوانین ایمنی و مسئولیت‌پذیری
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4 text-sm">
+                      <div>
+                        <h4 className="font-semibold text-gray-700 mb-2">4. ایمنی و نظارت</h4>
+                        <ul className="space-y-2 text-gray-600 text-xs">
+                          <li>• مسئولیت نگهداری وسایل شخصی بر عهده والدین است</li>
+                          <li>• حضور یکی از والدین یا سرپرست قانونی کودک الزامی است</li>
+                          <li>• رعایت دستورالعمل‌های ایمنی و قوانین مجموعه الزامی است</li>
+                          <li>• استفاده از امکانات تحت نظارت مربیان مجاز است</li>
+                        </ul>
+                      </div>
+                      
+                      <Separator className="bg-green-200" />
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-700 mb-2">5. خدمات و پکیج‌ها</h4>
+                        <ul className="space-y-2 text-gray-600 text-xs">
+                          <li>• محتویات هر پکیج به‌صورت شفاف درج شده است</li>
+                          <li>• خدمات خارج از پکیج‌ها نیاز به هماهنگی قبلی دارد</li>
+                          <li>• درخواست‌های خاص (تم، عروسک، عکاس، کیک سفارشی) در زمان ثبت فرم اعلام شود</li>
+                        </ul>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+                
+                <div className="text-center">
+                  <div className="bg-gradient-to-br from-pink-200 to-purple-200 rounded-3xl p-8 animate-float">
+                    <div className="text-8xl mb-4">🎊</div>
+                    <h3 className="text-2xl font-playful font-bold text-purple-700 mb-4">
+                      بهترین جشن تولد برای فرشته کوچولویتان
+                    </h3>
+                    <Button 
+                      onClick={() => scrollToSection('reservation')}
+                      className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful"
+                    >
+                      رزرو جشن تولد
+                    </Button>
                   </div>
-                  
-                  <Separator className="bg-purple-200" />
-                  
-                  <div>
-                    <h4 className="font-semibold text-gray-700 mb-2">2. کنسلی و تغییر زمان</h4>
-                    <ul className="space-y-2 text-gray-600 text-xs">
-                      <li>• لغو یا تغییر تاریخ: حداقل ۴۸ ساعت قبل از زمان برنامه‌ریزی‌شده</li>
-                      <li>• لغو در کمتر از ۴۸ ساعت: عدم بازگشت پیش‌پرداخت یا دریافت جریمه</li>
-                    </ul>
-                  </div>
-                  
-                  <Separator className="bg-purple-200" />
-                  
-                  <div>
-                    <h4 className="font-semibold text-gray-700 mb-2">3. ظرفیت و هزینه مهمانان</h4>
-                    <ul className="space-y-2 text-gray-600 text-xs">
-                      <li>• تمامی پکیج‌ها شامل حداکثر ۸ مهمان کودک هستند</li>
-                      <li>• هزینه اضافی مهمانان بر اساس نوع پکیج محاسبه می‌شود</li>
-                      <li>• تعداد نهایی مهمانان باید ۲۴ ساعت قبل اعلام گردد</li>
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-0 shadow-lg">
-                <CardHeader>
-                  <CardTitle className="font-playful text-green-700 flex items-center gap-2">
-                    <span className="text-2xl">🛡️</span>
-                    قوانین ایمنی و مسئولیت‌پذیری
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4 text-sm">
-                  <div>
-                    <h4 className="font-semibold text-gray-700 mb-2">4. ایمنی و نظارت</h4>
-                    <ul className="space-y-2 text-gray-600 text-xs">
-                      <li>• مسئولیت نگهداری وسایل شخصی بر عهده والدین است</li>
-                      <li>• حضور یکی از والدین یا سرپرست قانونی کودک الزامی است</li>
-                      <li>• رعایت دستورالعمل‌های ایمنی و قوانین مجموعه الزامی است</li>
-                      <li>• استفاده از امکانات تحت نظارت مربیان مجاز است</li>
-                    </ul>
-                  </div>
-                  
-                  <Separator className="bg-green-200" />
-                  
-                  <div>
-                    <h4 className="font-semibold text-gray-700 mb-2">5. خدمات و پکیج‌ها</h4>
-                    <ul className="space-y-2 text-gray-600 text-xs">
-                      <li>• محتویات هر پکیج به‌صورت شفاف درج شده است</li>
-                      <li>• خدمات خارج از پکیج‌ها نیاز به هماهنگی قبلی دارد</li>
-                      <li>• درخواست‌های خاص (تم، عروسک، عکاس، کیک سفارشی) در زمان ثبت فرم اعلام شود</li>
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
           </div>
         </div>
