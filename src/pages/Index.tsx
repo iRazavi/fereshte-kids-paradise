@@ -7,11 +7,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Home, Calendar, ShoppingCart, Phone, Info, GalleryHorizontal } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Home, Calendar, Phone, Info, GalleryHorizontal } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [whatsappCoordination, setWhatsappCoordination] = useState(false);
   const { toast } = useToast();
 
   const scrollToSection = (sectionId: string) => {
@@ -42,7 +44,6 @@ const Index = () => {
     { id: 'gallery', label: 'گالری', icon: GalleryHorizontal },
     { id: 'birthday', label: 'جشن تولدها', icon: Calendar },
     { id: 'reservation', label: 'رزرو', icon: Calendar },
-    { id: 'shop', label: 'فروشگاه', icon: ShoppingCart },
     { id: 'contact', label: 'تماس با ما', icon: Phone },
   ];
 
@@ -50,47 +51,51 @@ const Index = () => {
     {
       title: 'جشن تولد',
       description: 'برگزاری جشن تولد با تم‌های متنوع و جذاب برای کودکان',
-      icon: '🎂',
-      color: 'from-pink-400 to-purple-500'
+      icon: '🧁',
+      color: 'from-pink-300 to-rose-400'
     },
     {
       title: 'شهر مشاغل',
       description: 'محیطی برای آشنایی کودکان با مشاغل مختلف به صورت عملی و سرگرم‌کننده',
       icon: '🏗️',
-      color: 'from-blue-400 to-cyan-500'
+      color: 'from-blue-300 to-sky-400'
     },
     {
       title: 'کافه کودک',
       description: 'محیطی دوستانه برای صرف نوشیدنی و خوراکی‌های سالم و خوشمزه',
-      icon: '☕',
-      color: 'from-yellow-400 to-orange-500'
+      icon: '🥤',
+      color: 'from-yellow-300 to-amber-400'
     },
     {
       title: 'گیم‌نت',
       description: 'بازی‌های رایانه‌ای مناسب سن کودکان با نظارت مربیان',
       icon: '🎮',
-      color: 'from-green-400 to-emerald-500'
+      color: 'from-green-300 to-emerald-400'
     },
     {
       title: 'کلاس‌های آموزشی',
       description: 'کلاس‌های آموزشی متنوع از جمله زبان انگلیسی برای کودکان',
       icon: '📚',
-      color: 'from-purple-400 to-pink-500'
+      color: 'from-purple-300 to-violet-400'
     },
     {
       title: 'فضای بازی',
       description: 'محیطی امن و شاد برای بازی و تفریح کودکان',
       icon: '🎪',
-      color: 'from-red-400 to-rose-500'
+      color: 'from-indigo-300 to-purple-400'
     }
   ];
 
   const galleryImages = [
-    { id: 1, title: 'فضای بازی کودکان', src: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=500' },
-    { id: 2, title: 'کلاس آموزشی کودکان', src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500' },
-    { id: 3, title: 'فعالیت های آموزشی', src: 'https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=500' },
-    { id: 4, title: 'فروشگاه پیتزا در شهر مشاغل', src: 'https://images.unsplash.com/photo-1439886183900-e79ec0057170?w=500' },
-    { id: 5, title: 'کودک در استخر توپ', src: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f?w=500' },
+    { id: 1, title: 'جشن تولد با کیک فوتبالی', src: '/lovable-uploads/2dbdec2c-add3-4e81-88f4-6955ff5ad2b4.png' },
+    { id: 2, title: 'مهمونای ویژمون با شخصیت‌های محبوب', src: '/lovable-uploads/1d308140-5afe-4f22-953b-689c42532c3f.png' },
+    { id: 3, title: 'جشن تولد دخترونه با تم یونیکورن', src: '/lovable-uploads/0df77a58-a1c0-4564-adb6-e99d7bf54381.png' },
+    { id: 4, title: 'جشن تولد با تم دایناسور', src: '/lovable-uploads/6da99fac-87a9-4109-9a33-71f65106ce93.png' },
+    { id: 5, title: 'کلاس آموزشی کودکان', src: '/lovable-uploads/6e6ef0e0-fbd9-4a54-9553-52329236f8bc.png' },
+    { id: 6, title: 'فعالیت‌های تعاملی و آموزشی', src: '/lovable-uploads/e18e811d-af42-42f7-82fd-b7a871f660b7.png' },
+    { id: 7, title: 'فروشگاه پیتزا در شهر مشاغل', src: '/lovable-uploads/e2c394c1-b54e-49d6-b6d1-82d913ce357b.png' },
+    { id: 8, title: 'کودک در استخر توپ رنگی', src: '/lovable-uploads/bb1d6eb1-3e47-4bd9-b0c3-62e248dba677.png' },
+    { id: 9, title: 'بازی‌های آموزشی و تعاملی', src: '/lovable-uploads/9ae72c84-d79d-4308-aadf-1d0f22444861.png' },
   ];
 
   const testimonials = [
@@ -116,6 +121,49 @@ const Index = () => {
     { title: 'کادر مجرب', description: 'پرسنل حرفه‌ای و دوستدار کودک', icon: '👨‍🏫' },
     { title: 'برنامه‌های متنوع', description: 'فعالیت‌های آموزشی و تفریحی', icon: '🎨' },
     { title: 'ساعات مناسب', description: '17:00 تا 24:00 همه روزه', icon: '🕐' },
+  ];
+
+  const birthdayPackages = [
+    {
+      name: 'پکیج ساده',
+      price: '۸۰۰٬۰۰۰ تومان',
+      additionalGuest: '۱۰۰٬۰۰۰ تومان به ازای هر نفر',
+      features: [
+        'طراحی ساده صحنه تولد',
+        'برنامه‌ریزی طبق نظر والدین',
+        'یک ساعت بازی رایگان برای کودکان'
+      ],
+      icon: '🎈',
+      color: 'from-pink-200 to-rose-300'
+    },
+    {
+      name: 'پکیج طلایی',
+      price: '۱٬۰۰۰٬۰۰۰ تومان',
+      additionalGuest: '۱۲۰٬۰۰۰ تومان به ازای هر نفر',
+      features: [
+        'تزیینات کامل صحنه',
+        'تهیه ژله برای کودکان',
+        'یک ساعت بازی رایگان',
+        'همراهی پرسنل در اجرای جشن'
+      ],
+      icon: '✨',
+      color: 'from-yellow-200 to-amber-300'
+    },
+    {
+      name: 'پکیج VIP',
+      price: '۱٬۲۰۰٬۰۰۰ تومان',
+      additionalGuest: '۱۵۰٬۰۰۰ تومان به ازای هر نفر',
+      features: [
+        'تزیینات ویژه صحنه',
+        'طراحی کیک تولد',
+        'تهیه ژله برای کودکان',
+        'لباس عروسکی برای عکس‌برداری',
+        'همراهی کامل پرسنل',
+        'یک ساعت بازی رایگان برای کودکان'
+      ],
+      icon: '👑',
+      color: 'from-purple-200 to-violet-300'
+    }
   ];
 
   return (
@@ -149,7 +197,7 @@ const Index = () => {
             
             <Button 
               onClick={() => scrollToSection('reservation')}
-              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-playful animate-sparkle"
+              className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful animate-sparkle"
             >
               رزرو کنید
             </Button>
@@ -165,7 +213,7 @@ const Index = () => {
             <h1 className="text-5xl md:text-7xl font-playful font-bold rainbow-text mb-6 animate-fade-in">
               شهربازی فرشته
             </h1>
-            <p className="text-xl md:text-2xl text-gray-700 mb-8 animate-fade-in">
+            <p className="text-xl m-2xl text-gray-700 mb-8 animate-fade-in">
               مکانی آرام برای کودکان شما
             </p>
             <div className="grid md:grid-cols-4 gap-4 mb-8">
@@ -174,24 +222,24 @@ const Index = () => {
                 <p className="font-playful text-purple-700">محیطی شاد و امن برای بازی</p>
               </div>
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 hover:scale-105 transition-transform">
-                <div className="text-3xl mb-2">🎂</div>
-                <p className="font-playful text-pink-700">برگزاری جشن تولد</p>
+                <div className="text-3xl mb-2">🧁</div>
+                <p className="font-playful text-pink-600">برگزاری جشن تولد</p>
               </div>
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 hover:scale-105 transition-transform">
                 <div className="text-3xl mb-2">📚</div>
-                <p className="font-playful text-blue-700">کلاس‌های آموزشی و تفریحی</p>
+                <p className="font-playful text-blue-600">کلاس‌های آموزشی و تفریحی</p>
               </div>
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 hover:scale-105 transition-transform">
-                <div className="text-3xl mb-2">☕</div>
-                <p className="font-playful text-green-700">کافه کودک</p>
+                <div className="text-3xl mb-2">🥤</div>
+                <p className="font-playful text-green-600">کافه کودک</p>
               </div>
             </div>
             <Button 
               size="lg" 
               onClick={() => scrollToSection('reservation')}
-              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-playful text-lg px-8 py-4 rounded-full animate-bounce-gentle"
+              className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful text-lg px-8 py-4 rounded-full animate-bounce-gentle"
             >
-              رزرو تولد 🎉
+              رزرو تولد 🎂
             </Button>
           </div>
         </div>
@@ -231,7 +279,7 @@ const Index = () => {
       <section id="gallery" className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="text-6xl mb-4 animate-float">📸</div>
+            <div className="text-6xl mb-4 animate-float">📷</div>
             <h2 className="text-4xl font-playful font-bold rainbow-text mb-4">گالری تصاویر</h2>
             <p className="text-xl text-gray-600">گوشه‌ای از لحظات شاد و خاطره‌انگیز کودکان در شهربازی فرشته</p>
           </div>
@@ -263,6 +311,43 @@ const Index = () => {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               جشن تولد فراموش‌نشدنی برای کودک عزیزتان با امکانات کامل و تم‌های جذاب
             </p>
+          </div>
+          
+          <div className="max-w-5xl mx-auto mb-16">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-playful font-bold text-pink-600 mb-2">🎁 پکیج‌های تولد</h3>
+              <p className="text-gray-700">پکیج مناسب برای جشن تولد کودکتان را انتخاب کنید:</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {birthdayPackages.map((pkg, index) => (
+                <Card key={index} className="bg-white hover:shadow-2xl transition-all duration-300 hover:scale-105 border-0 overflow-hidden">
+                  <div className={`h-2 bg-gradient-to-r ${pkg.color}`}></div>
+                  <CardHeader className="text-center">
+                    <div className="text-4xl mb-2">{pkg.icon}</div>
+                    <CardTitle className="text-xl font-playful text-purple-700">{pkg.name}</CardTitle>
+                    <CardDescription>
+                      <p className="text-lg font-bold text-green-700 mt-2">{pkg.price}</p>
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 text-gray-700">
+                      {pkg.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="text-green-500 mt-1">•</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-4 pt-4 border-t border-dashed border-gray-200">
+                      <p className="text-sm text-purple-600">
+                        <span className="font-bold">👥 مهمان اضافه:</span> {pkg.additionalGuest}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -299,13 +384,13 @@ const Index = () => {
             
             <div className="text-center">
               <div className="bg-gradient-to-br from-pink-200 to-purple-200 rounded-3xl p-8 animate-float">
-                <div className="text-8xl mb-4">🎉</div>
+                <div className="text-8xl mb-4">🎊</div>
                 <h3 className="text-2xl font-playful font-bold text-purple-700 mb-4">
                   بهترین جشن تولد برای فرشته کوچولویتان
                 </h3>
                 <Button 
                   onClick={() => scrollToSection('reservation')}
-                  className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-playful"
+                  className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful"
                 >
                   رزرو جشن تولد
                 </Button>
@@ -319,7 +404,7 @@ const Index = () => {
       <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="text-6xl mb-4 animate-sparkle">💝</div>
+            <div className="text-6xl mb-4 animate-sparkle">💖</div>
             <h2 className="text-4xl font-playful font-bold rainbow-text mb-4">نظر بابا و مامان‌ها</h2>
             <p className="text-xl text-gray-600">نظرات والدین عزیز که تجربه خوشی با شهربازی فرشته داشته‌اند</p>
           </div>
@@ -397,7 +482,7 @@ const Index = () => {
           
           <div className="max-w-2xl mx-auto">
             <Card className="bg-white shadow-2xl border-0">
-              <CardHeader className="text-center bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-t-lg">
+              <CardHeader className="text-center bg-gradient-to-r from-pink-400 to-purple-500 text-white rounded-t-lg">
                 <CardTitle className="text-2xl font-playful">فرم رزرو</CardTitle>
                 <CardDescription className="text-pink-100">
                   اطلاعات زیر را تکمیل کنید تا با شما تماس بگیریم
@@ -436,6 +521,20 @@ const Index = () => {
                     <Input placeholder="مثال: 15 نفر" className="border-purple-200 focus:border-purple-500" />
                   </div>
                 </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">انتخاب پکیج</label>
+                  <Select>
+                    <SelectTrigger className="border-purple-200 focus:border-purple-500">
+                      <SelectValue placeholder="پکیج مورد نظر را انتخاب کنید" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="simple">🎈 پکیج ساده - ۸۰۰٬۰۰۰ تومان</SelectItem>
+                      <SelectItem value="gold">✨ پکیج طلایی - ۱٬۰۰۰٬۰۰۰ تومان</SelectItem>
+                      <SelectItem value="vip">👑 پکیج VIP - ۱٬۲۰۰٬۰۰۰ تومان</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">توضیحات اضافی</label>
@@ -445,48 +544,29 @@ const Index = () => {
                     rows={3}
                   />
                 </div>
+
+                <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                  <Checkbox 
+                    id="whatsapp" 
+                    checked={whatsappCoordination}
+                    onCheckedChange={(value) => setWhatsappCoordination(!!value)}
+                  />
+                  <label
+                    htmlFor="whatsapp"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    مایل هستید هماهنگی از طریق واتساپ انجام شود؟
+                  </label>
+                </div>
                 
                 <Button 
                   onClick={handleReservation}
-                  className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-playful text-lg py-3"
+                  className="w-full bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful text-lg py-3"
                 >
                   ثبت درخواست رزرو 🎉
                 </Button>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Shop Section */}
-      <section id="shop" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="text-6xl mb-4 animate-sparkle">🛍️</div>
-            <h2 className="text-4xl font-playful font-bold rainbow-text mb-4">فروشگاه</h2>
-            <p className="text-xl text-gray-600">محصولات و هدایای ویژه برای کودکان</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { name: 'اسباب بازی', icon: '🧸', color: 'from-pink-400 to-rose-500' },
-              { name: 'کتاب کودک', icon: '📚', color: 'from-blue-400 to-cyan-500' },
-              { name: 'لباس کودک', icon: '👕', color: 'from-purple-400 to-violet-500' },
-              { name: 'هدایا', icon: '🎁', color: 'from-green-400 to-emerald-500' }
-            ].map((item, index) => (
-              <Card key={index} className="text-center bg-white hover:shadow-2xl transition-all duration-300 hover:scale-105 border-0 overflow-hidden">
-                <div className={`h-2 bg-gradient-to-r ${item.color}`}></div>
-                <CardHeader>
-                  <div className="text-4xl mb-2">{item.icon}</div>
-                  <CardTitle className="font-playful text-purple-700">{item.name}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Button variant="outline" className="border-purple-300 text-purple-600 hover:bg-purple-50">
-                    مشاهده محصولات
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
       </section>
@@ -503,7 +583,7 @@ const Index = () => {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <Card className="bg-white shadow-2xl border-0">
-              <CardHeader className="bg-gradient-to-r from-purple-500 to-blue-600 text-white rounded-t-lg">
+              <CardHeader className="bg-gradient-to-r from-purple-400 to-blue-500 text-white rounded-t-lg">
                 <CardTitle className="text-xl font-playful">ثبت نظرات و پیشنهادات</CardTitle>
               </CardHeader>
               <CardContent className="p-8 space-y-6">
@@ -543,7 +623,7 @@ const Index = () => {
                 
                 <Button 
                   onClick={handleContactSubmit}
-                  className="w-full bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white font-playful"
+                  className="w-full bg-gradient-to-r from-purple-400 to-blue-500 hover:from-purple-500 hover:to-blue-600 text-white font-playful"
                 >
                   ثبت نظر
                 </Button>
@@ -586,28 +666,13 @@ const Index = () => {
                   </div>
                 </CardContent>
               </Card>
-              
-              <Card className="bg-gradient-to-br from-green-100 to-blue-100 border-0">
-                <CardHeader>
-                  <CardTitle className="font-playful text-green-700 flex items-center gap-2">
-                    <span className="text-2xl">🕐</span>
-                    ساعات کار
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-green-700 mb-2">17:00 - 24:00</p>
-                    <Badge variant="secondary" className="bg-green-200 text-green-800">همه روزه</Badge>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-purple-900 to-pink-900 text-white py-12">
+      <footer className="bg-gradient-to-r from-purple-800 to-pink-800 text-white py-12">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <div className="text-4xl mb-4">🧚‍♀️✨</div>
@@ -630,7 +695,7 @@ const Index = () => {
       <div className="fixed bottom-6 left-6 md:hidden z-50">
         <Button 
           onClick={() => scrollToSection('reservation')}
-          className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-playful rounded-full w-14 h-14 shadow-2xl animate-bounce-gentle"
+          className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful rounded-full w-14 h-14 shadow-2xl animate-bounce-gentle"
         >
           📅
         </Button>
