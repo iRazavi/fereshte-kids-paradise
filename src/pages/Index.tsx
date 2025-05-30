@@ -7,13 +7,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Home, Calendar, Phone, Info, GalleryHorizontal, MapPin, Instagram, HelpCircle, Coffee } from 'lucide-react';
+import { Home, Calendar, Phone, Info, GalleryHorizontal, MapPin, Instagram, Coffee } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 import jalaali from 'jalaali-js';
 import FAQ from '@/components/FAQ';
-import BackgroundMusic from '@/components/BackgroundMusic';
-import PriceCalculator from '@/components/PriceCalculator';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -71,7 +69,6 @@ const Index = () => {
     { id: 'gallery', label: 'گالری', icon: GalleryHorizontal },
     { id: 'birthday', label: 'جشن تولدها', icon: Calendar },
     { id: 'reservation', label: 'رزرو', icon: Calendar },
-    { id: 'faq', label: 'سؤالات متداول', icon: HelpCircle },
     { id: 'contact', label: 'تماس با ما', icon: Phone },
   ];
 
@@ -196,8 +193,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
-      <BackgroundMusic />
-      
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100 shadow-lg">
         <div className="container mx-auto px-4 py-4">
@@ -208,15 +203,6 @@ const Index = () => {
                 <h1 className="text-2xl font-playful font-bold rainbow-text">شهربازی فرشته</h1>
                 <p className="text-sm text-purple-600">مکانی آرام برای کودکان شما</p>
               </div>
-            </div>
-            
-            {/* Fancy Header Elements */}
-            <div className="hidden lg:flex items-center space-x-2 rtl:space-x-reverse animate-float">
-              <div className="text-2xl">🌟</div>
-              <div className="text-2xl">🎪</div>
-              <div className="text-2xl">🎠</div>
-              <div className="text-2xl">🎡</div>
-              <div className="text-2xl">🎢</div>
             </div>
             
             <nav className="hidden md:flex space-x-6 rtl:space-x-reverse">
@@ -465,338 +451,6 @@ const Index = () => {
 
       {/* FAQ Section */}
       <FAQ />
-
-      {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="text-6xl mb-4 animate-sparkle">💖</div>
-            <h2 className="text-4xl font-playful font-bold rainbow-text mb-4">نظر بابا و مامان‌ها</h2>
-            <p className="text-xl text-gray-600">نظرات والدین عزیز که تجربه خوشی با شهربازی فرشته داشته‌اند</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-white hover:shadow-2xl transition-all duration-300 hover:scale-105 border-0">
-                <CardHeader>
-                  <div className="flex items-center gap-2 mb-2">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-xl">⭐</span>
-                    ))}
-                  </div>
-                  <CardTitle className="font-playful text-purple-700">{testimonial.name}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 leading-relaxed">{testimonial.text}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="text-6xl mb-4 animate-float">🏰</div>
-            <h2 className="text-4xl font-playful font-bold rainbow-text mb-4">درباره ما</h2>
-            <h3 className="text-2xl font-playful text-purple-700 mb-6">چرا شهربازی فرشته؟</h3>
-          </div>
-          
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <p className="text-lg text-gray-700 leading-relaxed mb-8">
-              شهربازی فرشته با محیطی کاملاً امن و شاد، کادری حرفه‌ای و دلسوز و برنامه‌های متنوع آموزشی و تفریحی، 
-              بهترین انتخاب برای رشد، آموزش و شادی کودکان شماست. ما فضایی فراهم کرده‌ایم که کودکان علاوه بر بازی، 
-              مهارت‌های جدید یاد بگیرند و لحظاتی به‌یادماندنی را تجربه کنند.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {features.map((feature, index) => (
-              <Card key={index} className="text-center bg-gradient-to-br from-purple-50 to-pink-50 border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <CardHeader>
-                  <div className="text-4xl mb-2">{feature.icon}</div>
-                  <CardTitle className="font-playful text-purple-700">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          
-          <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-3xl p-8 text-center">
-            <div className="text-6xl mb-4">🛡️</div>
-            <h3 className="text-2xl font-playful font-bold text-green-700 mb-4">ایمنی و بهداشت؛ اولویت ما</h3>
-            <p className="text-gray-700 leading-relaxed max-w-3xl mx-auto">
-              تمامی تجهیزات بازی و فضای شهربازی فرشته به طور مرتب ضدعفونی شده و تحت نظارت دقیق بهداشتی قرار دارد 
-              تا شما و کودکان عزیزتان در محیطی کاملاً ایمن و سالم، با خیال راحت لحظات شادی را تجربه کنید.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Reservation Section */}
-      <section id="reservation" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="text-6xl mb-4 animate-bounce-gentle">📅</div>
-            <h2 className="text-4xl font-playful font-bold rainbow-text mb-4">رزرو جشن تولد</h2>
-            <p className="text-xl text-gray-600">همین امروز به ما سر بزنید!</p>
-          </div>
-          
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Reservation Form */}
-            <div className="lg:col-span-2">
-              <Card className="bg-white shadow-2xl border-0">
-                <CardHeader className="text-center bg-gradient-to-r from-pink-400 to-purple-500 text-white rounded-t-lg">
-                  <CardTitle className="text-2xl font-playful">فرم رزرو</CardTitle>
-                  <CardDescription className="text-pink-100">
-                    اطلاعات زیر را تکمیل کنید تا با شما تماس بگیریم
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-8 space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">نام والدین</label>
-                      <Input placeholder="نام و نام خانوادگی" className="border-purple-200 focus:border-purple-500" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">نام کودک</label>
-                      <Input placeholder="نام فرشته کوچولو" className="border-purple-200 focus:border-purple-500" />
-                    </div>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">شماره تماس</label>
-                      <Input placeholder="09xxxxxxxxx" className="border-purple-200 focus:border-purple-500" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">سن کودک</label>
-                      <Input placeholder="مثال: 5 سال" className="border-purple-200 focus:border-purple-500" />
-                    </div>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">تاریخ مورد نظر (شمسی)</label>
-                      <div className="grid grid-cols-3 gap-2">
-                        <Select>
-                          <SelectTrigger className="border-purple-200 focus:border-purple-500">
-                            <SelectValue placeholder="روز" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {Array.from({length: 31}, (_, i) => (
-                              <SelectItem key={i+1} value={String(i+1)}>{i+1}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <Select>
-                          <SelectTrigger className="border-purple-200 focus:border-purple-500">
-                            <SelectValue placeholder="ماه" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {persianMonths.map((month, index) => (
-                              <SelectItem key={index+1} value={String(index+1)}>{month}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <Select>
-                          <SelectTrigger className="border-purple-200 focus:border-purple-500">
-                            <SelectValue placeholder="سال" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="1403">1403</SelectItem>
-                            <SelectItem value="1404">1404</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">زمان برگزاری</label>
-                      <Select>
-                        <SelectTrigger className="border-purple-200 focus:border-purple-500">
-                          <SelectValue placeholder="انتخاب زمان" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="morning">صبح (9:00 - 12:00)</SelectItem>
-                          <SelectItem value="afternoon">عصر (15:00 - 18:00)</SelectItem>
-                          <SelectItem value="evening">شب (18:00 - 21:00)</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">تعداد مهمان</label>
-                    <Input placeholder="مثال: 15 نفر" className="border-purple-200 focus:border-purple-500" />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">انتخاب پکیج</label>
-                    <Select>
-                      <SelectTrigger className="border-purple-200 focus:border-purple-500">
-                        <SelectValue placeholder="پکیج مورد نظر را انتخاب کنید" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="simple">🎈 پکیج ساده - ۸۰۰٬۰۰۰ تومان</SelectItem>
-                        <SelectItem value="gold">✨ پکیج طلایی - ۱٬۰۰۰٬۰۰۰ تومان</SelectItem>
-                        <SelectItem value="vip">👑 پکیج VIP - ۱٬۲۰۰٬۰۰۰ تومان</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">توضیحات اضافی</label>
-                    <Textarea 
-                      placeholder="تم مورد علاقه، درخواست خاص و..." 
-                      className="border-purple-200 focus:border-purple-500" 
-                      rows={3}
-                    />
-                  </div>
-
-                  <div className="space-y-3">
-                    <p className="text-sm font-medium text-gray-700">مایل هستید هماهنگی از طریق واتساپ انجام شود؟</p>
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                        <Checkbox 
-                          id="whatsapp-yes" 
-                          checked={whatsappCoordination}
-                          onCheckedChange={(value) => setWhatsappCoordination(!!value)}
-                        />
-                        <label
-                          htmlFor="whatsapp-yes"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          بله، لطفاً از طریق واتساپ با من هماهنگ کنید
-                        </label>
-                      </div>
-                      <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                        <Checkbox 
-                          id="whatsapp-no" 
-                          checked={!whatsappCoordination}
-                          onCheckedChange={(value) => setWhatsappCoordination(!value)}
-                        />
-                        <label
-                          htmlFor="whatsapp-no"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          خیر، فقط تماس تلفنی کافی است
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <Button 
-                    onClick={handleReservation}
-                    className="w-full bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful text-lg py-3"
-                  >
-                    ثبت درخواست رزرو 🎉
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Price Calculator */}
-            <div className="space-y-6">
-              <PriceCalculator />
-              
-              <Separator className="bg-purple-200" />
-              
-              <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="space-y-6">
-                  <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-0 shadow-lg">
-                    <CardHeader>
-                      <CardTitle className="font-playful text-purple-700 flex items-center gap-2">
-                        <span className="text-2xl">📋</span>
-                        قوانین مجموعه پارک کودک فرشته
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4 text-sm">
-                      <div>
-                        <h4 className="font-semibold text-gray-700 mb-2">1. قوانین رزرو جشن تولد</h4>
-                        <ul className="space-y-2 text-gray-600 text-xs">
-                          <li>• جهت نهایی شدن رزرو، ممکن است نیاز به پرداخت مبلغی به عنوان پیش‌پرداخت باشد</li>
-                          <li>• در صورت عدم پاسخگویی مشتری طی ۲۴ ساعت پس از ثبت فرم، رزرو اولیه لغو خواهد شد</li>
-                        </ul>
-                      </div>
-                      
-                      <Separator className="bg-purple-200" />
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-700 mb-2">2. کنسلی و تغییر زمان</h4>
-                        <ul className="space-y-2 text-gray-600 text-xs">
-                          <li>• لغو یا تغییر تاریخ: حداقل ۴۸ ساعت قبل از زمان برنامه‌ریزی‌شده</li>
-                          <li>• لغو در کمتر از ۴۸ ساعت: عدم بازگشت پیش‌پرداخت یا دریافت جریمه</li>
-                        </ul>
-                      </div>
-                      
-                      <Separator className="bg-purple-200" />
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-700 mb-2">3. ظرفیت و هزینه مهمانان</h4>
-                        <ul className="space-y-2 text-gray-600 text-xs">
-                          <li>• تمامی پکیج‌ها شامل حداکثر ۸ مهمان کودک هستند</li>
-                          <li>• هزینه اضافی مهمانان بر اساس نوع پکیج محاسبه می‌شود</li>
-                          <li>• تعداد نهایی مهمانان باید ۲۴ ساعت قبل اعلام گردد</li>
-                        </ul>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-0 shadow-lg">
-                    <CardHeader>
-                      <CardTitle className="font-playful text-green-700 flex items-center gap-2">
-                        <span className="text-2xl">🛡️</span>
-                        قوانین ایمنی و مسئولیت‌پذیری
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4 text-sm">
-                      <div>
-                        <h4 className="font-semibold text-gray-700 mb-2">4. ایمنی و نظارت</h4>
-                        <ul className="space-y-2 text-gray-600 text-xs">
-                          <li>• مسئولیت نگهداری وسایل شخصی بر عهده والدین است</li>
-                          <li>• حضور یکی از والدین یا سرپرست قانونی کودک الزامی است</li>
-                          <li>• رعایت دستورالعمل‌های ایمنی و قوانین مجموعه الزامی است</li>
-                          <li>• استفاده از امکانات تحت نظارت مربیان مجاز است</li>
-                        </ul>
-                      </div>
-                      
-                      <Separator className="bg-green-200" />
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-700 mb-2">5. خدمات و پکیج‌ها</h4>
-                        <ul className="space-y-2 text-gray-600 text-xs">
-                          <li>• محتویات هر پکیج به‌صورت شفاف درج شده است</li>
-                          <li>• خدمات خارج از پکیج‌ها نیاز به هماهنگی قبلی دارد</li>
-                          <li>• درخواست‌های خاص (تم، عروسک، عکاس، کیک سفارشی) در زمان ثبت فرم اعلام شود</li>
-                        </ul>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-                
-                <div className="text-center">
-                  <div className="bg-gradient-to-br from-pink-200 to-purple-200 rounded-3xl p-8 animate-float">
-                    <div className="text-8xl mb-4">🎊</div>
-                    <h3 className="text-2xl font-playful font-bold text-purple-700 mb-4">
-                      بهترین جشن تولد برای فرشته کوچولویتان
-                    </h3>
-                    <Button 
-                      onClick={() => scrollToSection('reservation')}
-                      className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful"
-                    >
-                      رزرو جشن تولد
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
