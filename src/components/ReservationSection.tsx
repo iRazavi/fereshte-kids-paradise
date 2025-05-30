@@ -179,7 +179,7 @@ const ReservationSection = () => {
                 <Checkbox 
                   id="whatsapp" 
                   checked={whatsappCoordination}
-                  onCheckedChange={setWhatsappCoordination}
+                  onCheckedChange={(checked) => setWhatsappCoordination(checked === true)}
                 />
                 <label htmlFor="whatsapp" className="text-sm text-gray-700">
                   ترجیح می‌دهم هماهنگی‌ها از طریق واتساپ انجام شود
