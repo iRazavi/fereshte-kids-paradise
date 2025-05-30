@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Coffee, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const CafeMenu = () => {
