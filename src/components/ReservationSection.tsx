@@ -74,14 +74,6 @@ const ReservationSection = () => {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">تاریخ تولد</label>
-                <Input 
-                  placeholder="مثال: 15 آذر 1403" 
-                  className="border-purple-200 focus:border-purple-500" 
-                />
-              </div>
-
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">روز</label>
@@ -213,37 +205,49 @@ const ReservationSection = () => {
         <div className="max-w-md md:max-w-2xl mx-auto mt-8 md:mt-12">
           <Card className="bg-white shadow-xl border-0">
             <CardHeader className="bg-gradient-to-r from-purple-400 to-blue-500 text-white rounded-t-lg p-4 md:p-6">
-              <CardTitle className="text-xl md:text-2xl font-playful text-center">قوانین مجموعه</CardTitle>
+              <CardTitle className="text-xl md:text-2xl font-playful text-center">📋 قوانین رزرو شهربازی فرشته</CardTitle>
             </CardHeader>
             <CardContent className="p-4 md:p-6">
-              <div className="space-y-3 md:space-y-4 text-sm md:text-base text-gray-700">
+              <div className="space-y-4 text-sm md:text-base text-gray-700">
                 <div className="flex items-start gap-3">
-                  <span className="text-purple-500 text-lg">📋</span>
-                  <p>رزرو حداقل ۷ روز قبل از تاریخ مورد نظر الزامی است</p>
+                  <span className="text-purple-500 text-xl font-bold">1.</span>
+                  <p>رزرو باید حداقل ۳ روز پیش از تاریخ مورد نظر انجام شود.</p>
                 </div>
+                
                 <div className="flex items-start gap-3">
-                  <span className="text-purple-500 text-lg">💰</span>
-                  <p>پرداخت ۳۰٪ از مبلغ به عنوان بیعانه هنگام رزرو ضروری است</p>
+                  <span className="text-purple-500 text-xl font-bold">2.</span>
+                  <div>
+                    <p className="mb-2">در صورت لغو یا تغییر تاریخ:</p>
+                    <div className="mr-4 space-y-1">
+                      <p>• تا ۲۴ ساعت قبل از مراسم، امکان لغو یا تغییر بدون جریمه وجود دارد.</p>
+                      <p>• در صورت لغو کمتر از ۲۴ ساعت مانده به زمان رزرو، امکان بازپرداخت بیعانه وجود ندارد.</p>
+                    </div>
+                  </div>
                 </div>
+                
                 <div className="flex items-start gap-3">
-                  <span className="text-purple-500 text-lg">🚫</span>
-                  <p>ورود غذا و نوشیدنی از خارج ممنوع است</p>
+                  <span className="text-purple-500 text-xl font-bold">3.</span>
+                  <p>حداقل تعداد مهمانان ۵ نفر و حداکثر ۵۰ نفر می‌باشد.</p>
                 </div>
+                
                 <div className="flex items-start gap-3">
-                  <span className="text-purple-500 text-lg">👥</span>
-                  <p>حداقل ۵ نفر و حداکثر ۵۰ نفر مهمان پذیرش می‌شود</p>
+                  <span className="text-purple-500 text-xl font-bold">4.</span>
+                  <p>در صورت ایجاد آلودگی یا ریخت‌وپاش بیش از حد، هزینه‌ی نظافت جداگانه دریافت خواهد شد.</p>
                 </div>
+                
                 <div className="flex items-start gap-3">
-                  <span className="text-purple-500 text-lg">⏰</span>
-                  <p>مدت زمان هر جشن حداکثر ۳ ساعت می‌باشد</p>
+                  <span className="text-purple-500 text-xl font-bold">5.</span>
+                  <p>مجموعه در قبال گم‌شدن وسایل شخصی مهمانان مسئولیتی ندارد.</p>
                 </div>
+                
                 <div className="flex items-start gap-3">
-                  <span className="text-purple-500 text-lg">🧹</span>
-                  <p>هزینه تمیزکاری اضافی در صورت آلودگی بیش از حد دریافت می‌شود</p>
+                  <span className="text-purple-500 text-xl font-bold">6.</span>
+                  <p>مراقبت از کودکان در طول جشن بر عهده والدین یا همراهان آن‌هاست. حضور و نظارت والدین برای کودکان زیر ۵ سال الزامی است.</p>
                 </div>
+                
                 <div className="flex items-start gap-3">
-                  <span className="text-purple-500 text-lg">📱</span>
-                  <p>لطفاً موبایل خود را در حالت سایلنت قرار دهید</p>
+                  <span className="text-purple-500 text-xl font-bold">7.</span>
+                  <p>استفاده از تجهیزات بازی باید تحت نظر مربیان یا والدین انجام شود. رعایت نکات ایمنی در فضای بازی الزامی است.</p>
                 </div>
               </div>
             </CardContent>
