@@ -10,6 +10,13 @@ const GallerySection = () => {
     { id: 7, title: 'فروشگاه پیتزا در شهر مشاغل', src: '/lovable-uploads/e2c394c1-b54e-49d6-b6d1-82d913ce357b.png' },
     { id: 8, title: 'کودک در استخر توپ رنگی', src: '/lovable-uploads/bb1d6eb1-3e47-4bd9-b0c3-62e248dba677.png' },
     { id: 9, title: 'بازی‌های آموزشی و تعاملی', src: '/lovable-uploads/9ae72c84-d79d-4308-aadf-1d0f22444861.png' },
+    { id: 10, title: 'منطقه بازی برای کودکان کوچک', src: '/lovable-uploads/e255ffd8-e8d7-4205-a52e-eaa21b7a2fd2.png' },
+    { id: 11, title: 'کافه کودک با فضای دنج', src: '/lovable-uploads/63a24320-467f-4878-97fc-75163fd754d0.png' },
+    { id: 12, title: 'بازی‌های ویدئویی و سرگرمی', src: '/lovable-uploads/10d7845a-6352-4002-912e-8fcd6e53e350.png' },
+    { id: 13, title: 'مجموعه شهر بازی فرشته', src: '/lovable-uploads/1ab6a200-1c73-422d-b4a5-75282c65cd49.png' },
+    { id: 14, title: 'فضای بازی قلعه‌ای', src: '/lovable-uploads/e8459392-aa4c-4c3d-bd1f-a07b966c4ca4.png' },
+    { id: 15, title: 'منطقه بازی ساحلی', src: '/lovable-uploads/a1904294-ce86-4476-8b87-5b49c69a5f20.png' },
+    { id: 16, title: 'شهر مشاغل کودکان', src: '/lovable-uploads/40c3abda-524e-4ebe-b533-b000dbd10dee.png' },
   ];
 
   return (

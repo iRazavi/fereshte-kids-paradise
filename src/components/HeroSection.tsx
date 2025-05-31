@@ -47,7 +47,7 @@ const HeroSection = ({ onReservationClick }: HeroSectionProps) => {
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-200/70 via-purple-200/70 to-blue-200/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-200/70 via-pink-100/50 to-blue-200/60"></div>
       </div>
 
       {/* Content */}
@@ -83,7 +83,7 @@ const HeroSection = ({ onReservationClick }: HeroSectionProps) => {
             onClick={onReservationClick}
             className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful text-lg px-8 py-4 rounded-full animate-bounce-gentle shadow-xl"
           >
-            رزرو تولد 🎂
+            رزرو تولد کودک شما همین‌جاست! 🎁
           </Button>
         </div>
       </div>

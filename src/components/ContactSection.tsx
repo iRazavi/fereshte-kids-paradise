@@ -4,12 +4,17 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Separator } from '@/components/ui/separator';
 import { MapPin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useState } from 'react';
 
 const ContactSection = () => {
   const { toast } = useToast();
+  const [satisfaction, setSatisfaction] = useState('');
+  const [selectedSections, setSelectedSections] = useState<string[]>([]);
 
   const handleContactSubmit = () => {
     toast({
@@ -20,6 +25,18 @@ const ContactSection = () => {
 
   const handleMapClick = () => {
     window.open('https://maps.google.com/?q=گراش+خیابان+بازار+جنب+آموزشگاه+رانندگی+ساختمان+فرشته', '_blank');
+  };
+
+  const handleInstagramClick = () => {
+    window.open('https://www.instagram.com/share_bazi_fereshte/', '_blank');
+  };
+
+  const handleSectionChange = (section: string, checked: boolean) => {
+    if (checked) {
+      setSelectedSections([...selectedSections, section]);
+    } else {
+      setSelectedSections(selectedSections.filter(s => s !== section));
+    }
   };
 
   return (
@@ -45,6 +62,51 @@ const ContactSection = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">شماره تماس</label>
                 <Input placeholder="شماره تماس خود را وارد کنید" className="border-purple-200 focus:border-purple-500" />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">چقدر از خدمات شهربازی فرشته رضایت داشتید؟</label>
+                <RadioGroup value={satisfaction} onValueChange={setSatisfaction}>
+                  <div className="flex items-center space-x-2 space-x-reverse">
+                    <RadioGroupItem value="very-satisfied" id="very-satisfied" />
+                    <label htmlFor="very-satisfied" className="text-sm">خیلی راضی بودم</label>
+                  </div>
+                  <div className="flex items-center space-x-2 space-x-reverse">
+                    <RadioGroupItem value="satisfied" id="satisfied" />
+                    <label htmlFor="satisfied" className="text-sm">راضی بودم</label>
+                  </div>
+                  <div className="flex items-center space-x-2 space-x-reverse">
+                    <RadioGroupItem value="average" id="average" />
+                    <label htmlFor="average" className="text-sm">متوسط</label>
+                  </div>
+                  <div className="flex items-center space-x-2 space-x-reverse">
+                    <RadioGroupItem value="needs-improvement" id="needs-improvement" />
+                    <label htmlFor="needs-improvement" className="text-sm">نیاز به بهبود دارد</label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">نظر شما مربوط به کدام بخش است؟</label>
+                <div className="space-y-3">
+                  {[
+                    { id: 'birthday', label: '🔘 جشن تولد' },
+                    { id: 'playground', label: '🔘 فضای بازی' },
+                    { id: 'classes', label: '🔘 کلاس‌های آموزشی' },
+                    { id: 'job-city', label: '🔘 شهر مشاغل' },
+                    { id: 'cafe', label: '🔘 کافه کودک' },
+                    { id: 'other', label: '🔘 سایر' },
+                  ].map((section) => (
+                    <div key={section.id} className="flex items-center space-x-2 space-x-reverse">
+                      <Checkbox
+                        id={section.id}
+                        checked={selectedSections.includes(section.id)}
+                        onCheckedChange={(checked) => handleSectionChange(section.id, checked as boolean)}
+                      />
+                      <label htmlFor={section.id} className="text-sm">{section.label}</label>
+                    </div>
+                  ))}
+                </div>
               </div>
               
               <div>
@@ -116,7 +178,16 @@ const ContactSection = () => {
                 
                 <div>
                   <h4 className="font-semibold text-gray-700 mb-2">صفحه اینستاگرام:</h4>
-                  <p className="text-pink-600 font-mono">@share_bazi_fereshte</p>
+                  <Button 
+                    variant="outline" 
+                    className="text-pink-600 border-pink-300 hover:bg-pink-50"
+                    onClick={handleInstagramClick}
+                  >
+                    <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.621 5.367 11.988 11.988 11.988s11.987-5.367 11.987-11.988C24.004 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.321-1.297C4.198 14.792 3.53 13.45 3.53 11.987c0-1.463.668-2.805 1.598-3.704.93-.899 2.081-1.389 3.378-1.389 1.297 0 2.448.49 3.378 1.389.93.899 1.598 2.241 1.598 3.704 0 1.463-.668 2.805-1.598 3.704-.93.899-2.081 1.389-3.378 1.389zm8.017-.081c-.668 0-1.297-.188-1.818-.535-.521-.346-.929-.844-1.157-1.414-.229-.57-.277-1.19-.139-1.784.139-.594.417-1.139.807-1.564.39-.425.911-.743 1.482-.904.57-.162 1.172-.168 1.746-.02.574.149 1.098.428 1.49.793.391.365.651.816.735 1.283.084.467.006.949-.221 1.368-.226.419-.568.757-.972.96-.404.203-.856.298-1.284.281-.428-.017-.849-.132-1.205-.328-.356-.196-.643-.467-.855-.797-.212-.329-.343-.704-.391-1.094-.048-.39.011-.784.173-1.154.162-.37.419-.699.751-.962.332-.263.733-.456 1.172-.563.439-.107.9-.127 1.35-.058.45.068.878.235 1.251.486.373.252.683.581.905.963.222.382.352.809.381 1.249.029.44-.034.882-.183 1.295-.149.413-.386.789-.695 1.099-.309.31-.685.548-1.098.697-.413.149-.855.212-1.295.183-.44-.029-.867-.159-1.249-.381-.382-.222-.711-.532-.963-.905-.252-.373-.419-.801-.486-1.251-.068-.45-.049-.911.058-1.35.107-.439.3-.84.563-1.172.263-.332.592-.589.962-.751.37-.162.764-.221 1.154-.173.39.048.765.179 1.094.391.329.212.6.499.797.855.196.356.311.777.328 1.205.017.428-.078.88-.281 1.284-.203.404-.541.746-.96.972-.419.226-.901.305-1.368.221-.467-.084-.918-.344-1.283-.735-.365-.392-.644-.916-.793-1.49-.148-.574-.142-1.176.02-1.746.161-.571.479-1.092.904-1.482.425-.39.97-.668 1.564-.807.594-.138 1.214-.09 1.784.139.57.228 1.068.636 1.414 1.157.347.521.535 1.15.535 1.818z"/>
+                    </svg>
+                    @share_bazi_fereshte
+                  </Button>
                 </div>
               </CardContent>
             </Card>

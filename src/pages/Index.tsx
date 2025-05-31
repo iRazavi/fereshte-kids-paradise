@@ -42,7 +42,7 @@ const Index = () => {
           onClick={() => scrollToSection('reservation')}
           className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful rounded-full w-14 h-14 shadow-2xl animate-bounce-gentle"
         >
-          📅
+          🎁
         </Button>
       </div>
     </div>
