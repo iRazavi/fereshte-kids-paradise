@@ -1,5 +1,10 @@
 
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+
 const GallerySection = () => {
+  const [showAll, setShowAll] = useState(false);
+  
   const galleryImages = [
     { id: 1, title: 'جشن تولد با کیک فوتبالی', src: '/lovable-uploads/2dbdec2c-add3-4e81-88f4-6955ff5ad2b4.png' },
     { id: 2, title: 'مهمونای ویژمون با شخصیت‌های محبوب', src: '/lovable-uploads/1d308140-5afe-4f22-953b-689c42532c3f.png' },
@@ -19,6 +24,8 @@ const GallerySection = () => {
     { id: 16, title: 'شهر مشاغل کودکان', src: '/lovable-uploads/40c3abda-524e-4ebe-b533-b000dbd10dee.png' },
   ];
 
+  const displayedImages = showAll ? galleryImages : galleryImages.slice(0, 9);
+
   return (
     <section id="gallery" className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
       <div className="container mx-auto px-4">
@@ -29,7 +36,7 @@ const GallerySection = () => {
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {galleryImages.map((image) => (
+          {displayedImages.map((image) => (
             <div key={image.id} className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
               <img 
                 src={image.src} 
@@ -43,6 +50,18 @@ const GallerySection = () => {
             </div>
           ))}
         </div>
+
+        {!showAll && galleryImages.length > 9 && (
+          <div className="text-center mt-12">
+            <Button 
+              onClick={() => setShowAll(true)}
+              className="bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white font-playful px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <span className="text-xl ml-2">📸</span>
+              مشاهده عکس‌های بیشتر
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

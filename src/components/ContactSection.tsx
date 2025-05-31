@@ -4,17 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Separator } from '@/components/ui/separator';
 import { MapPin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { useState } from 'react';
 
 const ContactSection = () => {
   const { toast } = useToast();
-  const [satisfaction, setSatisfaction] = useState('');
-  const [selectedSections, setSelectedSections] = useState<string[]>([]);
 
   const handleContactSubmit = () => {
     toast({
@@ -29,14 +24,6 @@ const ContactSection = () => {
 
   const handleInstagramClick = () => {
     window.open('https://www.instagram.com/share_bazi_fereshte/', '_blank');
-  };
-
-  const handleSectionChange = (section: string, checked: boolean) => {
-    if (checked) {
-      setSelectedSections([...selectedSections, section]);
-    } else {
-      setSelectedSections(selectedSections.filter(s => s !== section));
-    }
   };
 
   return (
@@ -62,51 +49,6 @@ const ContactSection = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">شماره تماس</label>
                 <Input placeholder="شماره تماس خود را وارد کنید" className="border-purple-200 focus:border-purple-500" />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">چقدر از خدمات شهربازی فرشته رضایت داشتید؟</label>
-                <RadioGroup value={satisfaction} onValueChange={setSatisfaction}>
-                  <div className="flex items-center space-x-2 space-x-reverse">
-                    <RadioGroupItem value="very-satisfied" id="very-satisfied" />
-                    <label htmlFor="very-satisfied" className="text-sm">خیلی راضی بودم</label>
-                  </div>
-                  <div className="flex items-center space-x-2 space-x-reverse">
-                    <RadioGroupItem value="satisfied" id="satisfied" />
-                    <label htmlFor="satisfied" className="text-sm">راضی بودم</label>
-                  </div>
-                  <div className="flex items-center space-x-2 space-x-reverse">
-                    <RadioGroupItem value="average" id="average" />
-                    <label htmlFor="average" className="text-sm">متوسط</label>
-                  </div>
-                  <div className="flex items-center space-x-2 space-x-reverse">
-                    <RadioGroupItem value="needs-improvement" id="needs-improvement" />
-                    <label htmlFor="needs-improvement" className="text-sm">نیاز به بهبود دارد</label>
-                  </div>
-                </RadioGroup>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">نظر شما مربوط به کدام بخش است؟</label>
-                <div className="space-y-3">
-                  {[
-                    { id: 'birthday', label: '🔘 جشن تولد' },
-                    { id: 'playground', label: '🔘 فضای بازی' },
-                    { id: 'classes', label: '🔘 کلاس‌های آموزشی' },
-                    { id: 'job-city', label: '🔘 شهر مشاغل' },
-                    { id: 'cafe', label: '🔘 کافه کودک' },
-                    { id: 'other', label: '🔘 سایر' },
-                  ].map((section) => (
-                    <div key={section.id} className="flex items-center space-x-2 space-x-reverse">
-                      <Checkbox
-                        id={section.id}
-                        checked={selectedSections.includes(section.id)}
-                        onCheckedChange={(checked) => handleSectionChange(section.id, checked as boolean)}
-                      />
-                      <label htmlFor={section.id} className="text-sm">{section.label}</label>
-                    </div>
-                  ))}
-                </div>
               </div>
               
               <div>
