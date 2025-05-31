@@ -1,7 +1,17 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Coffee } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const ServicesSection = () => {
+  const navigate = useNavigate();
+
+  const handleCafeMenuClick = () => {
+    navigate('/cafe-menu');
+  };
+
   const services = [
     {
       title: 'جشن تولد',
@@ -19,7 +29,8 @@ const ServicesSection = () => {
       title: 'کافه کودک',
       description: 'محیطی دوستانه برای صرف نوشیدنی و خوراکی‌های سالم و خوشمزه',
       icon: '🥤',
-      color: 'from-yellow-300 to-amber-400'
+      color: 'from-yellow-300 to-amber-400',
+      hasButton: true
     },
     {
       title: 'گیم‌نت',
@@ -60,10 +71,21 @@ const ServicesSection = () => {
                 <div className="text-4xl mb-4 animate-sparkle">{service.icon}</div>
                 <CardTitle className="text-xl font-playful text-purple-700">{service.title}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center text-gray-600 leading-relaxed">
+              <CardContent className="text-center">
+                <CardDescription className="text-gray-600 leading-relaxed mb-4">
                   {service.description}
                 </CardDescription>
+                {service.hasButton && (
+                  <Button 
+                    onClick={handleCafeMenuClick}
+                    size="sm"
+                    className="bg-gradient-to-r from-orange-400 to-yellow-500 hover:from-orange-500 hover:to-yellow-600 text-white rounded-full flex items-center gap-2 mx-auto"
+                  >
+                    <Coffee size={16} />
+                    <span>منو کافه</span>
+                    <Badge className="bg-white/20 text-xs px-1 py-0">به زودی</Badge>
+                  </Button>
+                )}
               </CardContent>
             </Card>
           ))}

@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
@@ -35,16 +34,6 @@ const Index = () => {
       <FAQ />
       <ContactSection />
       <Footer />
-
-      {/* Mobile Menu Button */}
-      <div className="fixed bottom-6 left-6 md:hidden z-50">
-        <Button 
-          onClick={() => scrollToSection('reservation')}
-          className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful rounded-full w-14 h-14 shadow-2xl animate-bounce-gentle"
-        >
-          🎁
-        </Button>
-      </div>
     </div>
   );
 };
