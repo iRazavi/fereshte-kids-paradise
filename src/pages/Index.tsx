@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
 import GallerySection from '@/components/GallerySection';
+import TestimonialsSection from '@/components/TestimonialsSection';
 import BirthdaySection from '@/components/BirthdaySection';
 import ReservationSection from '@/components/ReservationSection';
 import FAQ from '@/components/FAQ';
@@ -28,6 +29,7 @@ const Index = () => {
       <HeroSection onReservationClick={() => scrollToSection('reservation')} />
       <ServicesSection />
       <GallerySection />
+      <TestimonialsSection />
       <BirthdaySection onReservationClick={() => scrollToSection('reservation')} />
       <ReservationSection />
       <FAQ />
