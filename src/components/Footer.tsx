@@ -15,9 +15,9 @@ const Footer = () => {
         
         <Separator className="bg-purple-600 mb-8" />
         
-        <div className="text-center text-sm text-purple-200">
-          <p className="mb-2">© 2025 - تمامی حقوق برای شهربازی فرشته محفوظ است</p>
-          <p>ساخته شده توسط عرشیا</p>
+        <div className="text-center text-purple-200">
+          <p className="text-sm mb-2">© 2025 - تمامی حقوق برای شهربازی فرشته محفوظ است</p>
+          <p className="text-lg font-medium">ساخته شده توسط عرشیا</p>
         </div>
       </div>
     </footer>
