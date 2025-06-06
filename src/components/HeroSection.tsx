@@ -37,7 +37,7 @@ const HeroSection = ({ onReservationClick }: HeroSectionProps) => {
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentImageIndex ? 'opacity-70' : 'opacity-0'
+              index === currentImageIndex ? 'opacity-90' : 'opacity-0'
             }`}
           >
             <img 
@@ -47,7 +47,7 @@ const HeroSection = ({ onReservationClick }: HeroSectionProps) => {
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-100/40 via-purple-50/30 to-blue-100/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-100/20 via-purple-50/15 to-blue-100/20"></div>
       </div>
 
       {/* Content */}
