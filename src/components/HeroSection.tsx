@@ -37,7 +37,7 @@ const HeroSection = ({ onReservationClick }: HeroSectionProps) => {
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentImageIndex ? 'opacity-30' : 'opacity-0'
+              index === currentImageIndex ? 'opacity-40' : 'opacity-0'
             }`}
           >
             <img 
@@ -47,7 +47,7 @@ const HeroSection = ({ onReservationClick }: HeroSectionProps) => {
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-200/70 via-pink-100/50 to-blue-200/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-100/80 via-purple-50/70 to-blue-100/80"></div>
       </div>
 
       {/* Content */}
@@ -81,7 +81,7 @@ const HeroSection = ({ onReservationClick }: HeroSectionProps) => {
           <Button 
             size="lg" 
             onClick={onReservationClick}
-            className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-playful text-lg px-8 py-4 rounded-full animate-bounce-gentle shadow-xl"
+            className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-playful text-lg px-8 py-4 rounded-full animate-pulse shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-white/50 hover:border-white/70"
           >
             رزرو تولد کودک شما همین‌جاست! 🎁
           </Button>
