@@ -129,10 +129,6 @@ const PricingPage = () => {
                       <Clock className="w-4 h-4 text-blue-500" />
                       <span>۶۰ دقیقه شادی و سرگرمی</span>
                     </div>
-                    <div className="flex items-center gap-2 text-green-700 font-medium">
-                      <Star className="w-4 h-4 text-green-500" />
-                      <span>+ یک نوشیدنی رایگان</span>
-                    </div>
                   </div>
 
                   <Badge className="bg-purple-100 text-purple-700 hover:bg-purple-200">
@@ -151,7 +147,7 @@ const PricingPage = () => {
               disabled={!selectedPlan}
               className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-playful text-lg px-12 py-4 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {selectedPlan ? 'ادامه رزرو' : 'ابتدا یک گزینه انتخاب کنید'} 🎁
+              {selectedPlan ? 'پرداخت' : 'ابتدا یک گزینه انتخاب کنید'} 💳
             </Button>
             
             {selectedPlan && (
