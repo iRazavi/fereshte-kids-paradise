@@ -45,6 +45,13 @@ const ServicesSection = () => {
       color: 'from-purple-300 to-violet-400'
     },
     {
+      title: 'قرعه‌کشی هفتگی',
+      description: 'قرعه‌کشی هیجان‌انگیز با جوایز ویژه برای کودکان',
+      icon: '🎲',
+      color: 'from-indigo-300 to-purple-400',
+      comingSoon: true
+    },
+    {
       title: 'فضای بازی',
       description: 'محیطی امن و شاد برای بازی و تفریح کودکان',
       icon: '🎪',
@@ -53,26 +60,26 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="text-6xl mb-4 animate-bounce-gentle">🎨</div>
           <h2 className="text-4xl font-playful font-bold rainbow-text mb-4">خدمات ما</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             ما در شهربازی فرشته طیف متنوعی از خدمات سرگرمی و آموزشی را برای کودکان شما فراهم کرده‌ایم
           </p>
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="bg-white hover:shadow-2xl transition-all duration-300 hover:scale-105 border-0 overflow-hidden">
+            <Card key={index} className="bg-white dark:bg-gray-800 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-0 overflow-hidden">
               <div className={`h-2 bg-gradient-to-r ${service.color}`}></div>
               <CardHeader className="text-center">
                 <div className="text-4xl mb-4 animate-sparkle">{service.icon}</div>
-                <CardTitle className="text-xl font-playful text-purple-700">{service.title}</CardTitle>
+                <CardTitle className="text-xl font-playful text-purple-700 dark:text-purple-300">{service.title}</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <CardDescription className="text-gray-600 leading-relaxed mb-4">
+                <CardDescription className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
                   {service.description}
                 </CardDescription>
                 {service.hasButton && (
@@ -85,6 +92,11 @@ const ServicesSection = () => {
                     <span>منو کافه</span>
                     <Badge className="bg-white/20 text-xs px-1 py-0">به زودی</Badge>
                   </Button>
+                )}
+                {service.comingSoon && (
+                  <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 text-sm rounded-full">
+                    به زودی
+                  </Badge>
                 )}
               </CardContent>
             </Card>
