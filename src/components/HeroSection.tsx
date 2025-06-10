@@ -1,6 +1,8 @@
 
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
+import { Clock } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface HeroSectionProps {
   onReservationClick: () => void;
@@ -8,6 +10,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({ onReservationClick }: HeroSectionProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const navigate = useNavigate();
   
   const heroImages = [
     '/lovable-uploads/bc2f8e0e-45cf-408a-8488-e10d190ac3dd.png',
@@ -47,7 +50,7 @@ const HeroSection = ({ onReservationClick }: HeroSectionProps) => {
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-100/20 via-purple-50/15 to-blue-100/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-100/15 via-purple-50/10 to-blue-100/15"></div>
       </div>
 
       {/* Content */}
@@ -78,13 +81,27 @@ const HeroSection = ({ onReservationClick }: HeroSectionProps) => {
               <p className="font-playful text-green-600 font-medium">کافه کودک</p>
             </div>
           </div>
-          <Button 
-            size="lg" 
-            onClick={onReservationClick}
-            className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-playful text-lg px-8 py-4 rounded-full animate-pulse shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-white/50 hover:border-white/70"
-          >
-            رزرو تولد کودک شما همین‌جاست! 🎁
-          </Button>
+          
+          {/* Buttons Container */}
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+            <Button 
+              size="lg" 
+              onClick={onReservationClick}
+              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-playful text-lg px-8 py-4 rounded-full animate-pulse shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-white/50 hover:border-white/70"
+            >
+              رزرو تولد کودک شما همین‌جاست! 🎁
+            </Button>
+            
+            <Button 
+              size="lg" 
+              onClick={() => navigate('/pricing')}
+              variant="outline"
+              className="bg-white/90 backdrop-blur-sm hover:bg-white text-purple-700 font-playful text-lg px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-purple-300 hover:border-purple-500"
+            >
+              <Clock className="w-5 h-5 ml-2" />
+              تعرفه بازی
+            </Button>
+          </div>
         </div>
       </div>
 
