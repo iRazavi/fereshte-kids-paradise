@@ -6,10 +6,17 @@ import { Badge } from '@/components/ui/badge';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Clock, Star, Heart, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import ConfettiAnimation from '@/components/ConfettiAnimation';
 
 const PricingPage = () => {
   const [selectedPlan, setSelectedPlan] = useState('');
+  const [showConfetti, setShowConfetti] = useState(false);
   const navigate = useNavigate();
+
+  const handlePlanSelection = (value: string) => {
+    setSelectedPlan(value);
+    setShowConfetti(true);
+  };
 
   const handleReservation = () => {
     // Navigate to home and scroll to reservation section
@@ -24,6 +31,11 @@ const PricingPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 py-20">
+      <ConfettiAnimation 
+        show={showConfetti} 
+        onComplete={() => setShowConfetti(false)} 
+      />
+      
       <div className="container mx-auto px-4">
         {/* Back Button */}
         <Button 
@@ -48,10 +60,10 @@ const PricingPage = () => {
 
         {/* Pricing Cards */}
         <div className="max-w-4xl mx-auto">
-          <RadioGroup value={selectedPlan} onValueChange={setSelectedPlan}>
+          <RadioGroup value={selectedPlan} onValueChange={handlePlanSelection}>
             <div className="grid md:grid-cols-2 gap-8">
               {/* 30 Minutes Plan */}
-              <Card className="relative hover:scale-105 transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm border-2 hover:border-pink-300 hover:shadow-xl">
+              <Card className={`relative hover:scale-105 transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm border-2 hover:border-pink-300 hover:shadow-xl ${selectedPlan === '30min' ? 'ring-4 ring-pink-300 border-pink-400' : ''}`}>
                 <div className="absolute top-4 right-4">
                   <RadioGroupItem value="30min" id="30min" />
                 </div>
@@ -92,7 +104,7 @@ const PricingPage = () => {
               </Card>
 
               {/* 60 Minutes Plan */}
-              <Card className="relative hover:scale-105 transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm border-2 hover:border-purple-300 hover:shadow-xl">
+              <Card className={`relative hover:scale-105 transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm border-2 hover:border-purple-300 hover:shadow-xl ${selectedPlan === '60min' ? 'ring-4 ring-purple-300 border-purple-400' : ''}`}>
                 <div className="absolute top-4 right-4">
                   <RadioGroupItem value="60min" id="60min" />
                 </div>
