@@ -45,13 +45,6 @@ const ServicesSection = () => {
       color: 'from-purple-300 to-violet-400'
     },
     {
-      title: 'قرعه‌کشی هفتگی',
-      description: 'قرعه‌کشی هیجان‌انگیز با جوایز ویژه برای کودکان',
-      icon: '🎲',
-      color: 'from-indigo-300 to-purple-400',
-      comingSoon: true
-    },
-    {
       title: 'فضای بازی',
       description: 'محیطی امن و شاد برای بازی و تفریح کودکان',
       icon: '🎪',
@@ -92,11 +85,6 @@ const ServicesSection = () => {
                     <span>منو کافه</span>
                     <Badge className="bg-white/20 text-xs px-1 py-0">به زودی</Badge>
                   </Button>
-                )}
-                {service.comingSoon && (
-                  <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 text-sm rounded-full">
-                    به زودی
-                  </Badge>
                 )}
               </CardContent>
             </Card>

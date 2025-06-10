@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Home, Calendar, Phone, Info, GalleryHorizontal } from 'lucide-react';
-import DarkModeToggle from './DarkModeToggle';
 
 interface HeaderProps {
   activeSection: string;
@@ -32,7 +31,6 @@ const Header = ({ activeSection, onSectionClick }: HeaderProps) => {
           </div>
           
           <div className="flex items-center gap-4">
-            <DarkModeToggle />
             <nav className="hidden md:flex space-x-6 rtl:space-x-reverse">
               {navItems.map((item) => (
                 <button
